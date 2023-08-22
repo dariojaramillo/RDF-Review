@@ -1,0 +1,69 @@
+Request for Proposal (RFP) Specification Document
+Project Overview
+Project Name: Windows 2012 Deprecation Project
+Client/Organization: Cision
+Contact Person: Dario Jaramillo
+Contact Information: Dario.jaramillo@cision.com
+Date: 8/7/2023
+
+Introduction:
+
+Scope of Work:
+The scope of this project is large and will include many collaborative efforts across numerous product teams. Our plan needs to be sound with a timetable including milestones (i.e. how many servers we plan on completing each month/quarter.
+
+Windows Image:
+•	DataCenter versions for VMs
+•	Crowdstrike
+•	Qualys Cloud Security Agent: we have 3 options:
+•	install on the golden image (it requires more process and steps to finally get a UID on cloning)
+•	place the installation file in the C drive on the image and run it with script upon cloning.
+•	use Windows GPO (it’s already setup and that’s the current way of provisioning new windows servers)
+•	ScaleFT server tools for ASA
+•	UniversalForwarder for Splunk
+•	VMware tools (if server in Vcenter)
+•	Windows exporter for Prometheus
+•	standard configuration:
+•	Firewall enabled configured via GPO
+•	Security policies per InfoSec requirements are pushed via GPO, it can also be done by powershell script
+•	TLS hardening is condifured via GPO, it can also be done using software on golden images.
+•	configuration during provisioning:
+•	sysprep
+•	language preferences and time zone
+•	firewall OFF (firewall rules will be adjusted later via GPO If server requires other roles or features to be installed like IIS, a script will be added for that.
+
+
+Linux Images:
+•	Thin-provision Storage
+•	CentOS 7/8
+•	Debian 10
+•	Ubuntu 20
+•	Standard tooling:
+•	Domain join via LDAP : Corp => Internal Production
+•	Crowdstrike
+•	Qualys Cloud Security Agent
+•	ScaleFT server tools for ASA
+•	UniversalForwarder for Splunk
+•	Network:
+•	recommend following legacy servers configurations whether is dhcp or static. majority of Cision servers are IPV4 static EXAMPLE: in the vcenter: C3/IRIS/PRWEB/DB servers etc. we have dedicated Vlans and subnets.
+•	for Vcenters, IPs are managed via Solarwinds based on locations, in case you don't have access or you need an available IP, you can reach out to network team to confirm with providing the desired subnet.
+•	Discovery services:
+•	Splunk
+•	Crowdstrike
+•	Qualys
+•	windows_exporter for Promeutheus / SolarWinds agent. Ansible and SSH is available in Linux boxes WinRM is also being used in Windows boxes
+
+
+Technical Requirements:
+Functional Requirements:
+Timeline:
+Budget:
+Evaluation Criteria:
+
+Proposal Submission Guidelines:
+Selection Process:
+Terms and Conditions:
+
+Contact for Clarifications:
+
+Conclusion:
+
